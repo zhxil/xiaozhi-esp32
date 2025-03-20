@@ -38,6 +38,9 @@ public:
 #if CONFIG_USE_WECHAT_MESSAGE_STYLE
     virtual void SetChatMessage(const char* role, const char* content) override; 
 #endif  
+
+    // Add theme switching function
+    virtual void SetTheme(const std::string& theme_name) override;
 };
 
 // RGB LCD显示器
