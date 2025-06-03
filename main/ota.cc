@@ -57,13 +57,18 @@ Http* Ota::SetupHttp() {
     http->SetHeader("Activation-Version", has_serial_number_ ? "2" : "1");
     http->SetHeader("Device-Id", SystemInfo::GetMacAddress().c_str());
     http->SetHeader("Client-Id", board.GetUuid());
-    http->SetHeader("User-Agent", std::string(BOARD_NAME "/") + app_desc->version);
+    if (has_serial_number_) {
+        http->SetHeader("Serial-Number", serial_number_.c_str());
+    }
     http->SetHeader("Accept-Language", Lang::CODE);
     http->SetHeader("Content-Type", "application/json");
 
     return http;
 }
 
+/* 
+ * Specification: https://ccnphfhqs21z.feishu.cn/wiki/FjW6wZmisimNBBkov6OcmfvknVd
+ */
 bool Ota::CheckVersion() {
     auto& board = Board::GetInstance();
     auto app_desc = esp_app_get_description();
@@ -285,7 +290,7 @@ void Ota::Upgrade(const std::string& firmware_url) {
         total_read += ret;
         if (esp_timer_get_time() - last_calc_time >= 1000000 || ret == 0) {
             size_t progress = total_read * 100 / content_length;
-            ESP_LOGI(TAG, "Progress: %zu%% (%zu/%zu), Speed: %zuB/s", progress, total_read, content_length, recent_read);
+            ESP_LOGI(TAG, "Progress: %u%% (%u/%u), Speed: %uB/s", progress, total_read, content_length, recent_read);
             if (upgrade_callback_) {
                 upgrade_callback_(progress, recent_read);
             }
