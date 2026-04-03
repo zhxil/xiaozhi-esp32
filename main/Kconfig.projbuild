@@ -281,6 +281,9 @@ choice BOARD_TYPE
     config BOARD_TYPE_WAVESHARE_ESP32_C6_TOUCH_AMOLED_2_06
         bool "Waveshare ESP32-C6-Touch-AMOLED-2.06"
         depends on IDF_TARGET_ESP32C6
+    config BOARD_TYPE_WAVESHARE_ESP32_C6_TOUCH_AMOLED_2_16
+        bool "Waveshare ESP32-C6-Touch-AMOLED-2.16"
+        depends on IDF_TARGET_ESP32C6
     config BOARD_TYPE_WAVESHARE_ESP32_S3_TOUCH_AMOLED_1_75
         bool "Waveshare ESP32-S3-Touch-AMOLED-1.75"
         depends on IDF_TARGET_ESP32S3
@@ -364,6 +367,9 @@ choice BOARD_TYPE
         depends on IDF_TARGET_ESP32P4
     config BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_3_4C
         bool "Waveshare ESP32-P4-WIFI6-Touch-LCD-3.4C"
+        depends on IDF_TARGET_ESP32P4
+    config BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_3_5
+        bool "Waveshare ESP32-P4-WIFI6-Touch-LCD-3.5"
         depends on IDF_TARGET_ESP32P4
     config BOARD_TYPE_WAVESHARE_ESP32_P4_WIFI6_TOUCH_LCD_4C
         bool "Waveshare ESP32-P4-WIFI6-Touch-LCD-4C"
@@ -526,6 +532,9 @@ choice BOARD_TYPE
         depends on IDF_TARGET_ESP32S3
     config BOARD_TYPE_HU_087
         bool "HU-087"
+        depends on IDF_TARGET_ESP32S3
+    config BOARD_TYPE_Freenove_ESP32S3_DISPLAY_2_8_LCD
+        bool "Freenove ESP32S3 Display 2.8 LCD"
         depends on IDF_TARGET_ESP32S3
 endchoice
 
